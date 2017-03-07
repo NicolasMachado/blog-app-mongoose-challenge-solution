@@ -36,6 +36,7 @@ function generateBlogPostData() {
   return {
     title: faker.lorem.sentence(),
     content: faker.lorem.sentences(),
+    created: new Date(),
     author: {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName()
@@ -95,7 +96,6 @@ describe('Restaurants API resource', function() {
         .then(function(_res) {
           // so subsequent .then blocks can access resp obj.
           res = _res;
-          console.log(res.body);
           res.should.have.status(200);
           // otherwise our db seeding didn't work
           res.body.should.have.length.of.at.least(1);
@@ -122,7 +122,7 @@ describe('Restaurants API resource', function() {
           res.body.forEach(function(blogpost) {
             blogpost.should.be.a('object');
             blogpost.should.include.keys(
-              'id', 'title', 'author', 'content');
+              'id', 'title', 'author', 'content', 'created');
           });
           resBlogPost = res.body[0];
           return BlogPost.findById(resBlogPost.id);
@@ -131,6 +131,7 @@ describe('Restaurants API resource', function() {
           resBlogPost.id.should.equal(blogpost.id);
           resBlogPost.title.should.equal(blogpost.title);
           resBlogPost.content.should.equal(blogpost.content);
+          resBlogPost.created.should.equal(blogpost.created.toISOString());
         });
     });
   });
