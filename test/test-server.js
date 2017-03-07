@@ -128,10 +128,13 @@ describe('Restaurants API resource', function() {
           return BlogPost.findById(resBlogPost.id);
         })
         .then(function(blogpost) {
+          console.log(blogpost.author);
+          console.log(resBlogPost.author);
           resBlogPost.id.should.equal(blogpost.id);
           resBlogPost.title.should.equal(blogpost.title);
           resBlogPost.content.should.equal(blogpost.content);
           resBlogPost.created.should.equal(blogpost.created.toISOString());
+          resBlogPost.author.should.equal(`${blogpost.author.firstName} ${blogpost.author.lastName}`);
         });
     });
   });
