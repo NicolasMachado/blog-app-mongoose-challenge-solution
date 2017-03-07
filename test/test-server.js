@@ -128,8 +128,6 @@ describe('Restaurants API resource', function() {
           return BlogPost.findById(resBlogPost.id);
         })
         .then(function(blogpost) {
-          console.log(blogpost.author);
-          console.log(resBlogPost.author);
           resBlogPost.id.should.equal(blogpost.id);
           resBlogPost.title.should.equal(blogpost.title);
           resBlogPost.content.should.equal(blogpost.content);
@@ -156,7 +154,7 @@ describe('Restaurants API resource', function() {
           res.should.be.json;
           res.body.should.be.a('object');
           res.body.should.include.keys(
-            'id', 'content', 'title', 'author');
+            'id', 'content', 'title', 'author', 'created');
           res.body.title.should.equal(newBlogPost.title);
           // cause Mongo should have created id on insertion
           res.body.id.should.not.be.null;
@@ -168,6 +166,7 @@ describe('Restaurants API resource', function() {
           blogspot.title.should.equal(newBlogPost.title);
           blogspot.content.should.equal(newBlogPost.content);
           blogspot.author.should.be.a('object');
+          blogspot.id.should.not.be.null;
         });
     });
   });
