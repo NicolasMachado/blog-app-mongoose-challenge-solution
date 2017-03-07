@@ -29,7 +29,7 @@ function seedBlogPostData() {
   return BlogPost.insertMany(seedData);
 }
 
-// generate an object represnting a restaurant.
+// generate an object represnting a blogpost.
 // can be used to generate seed data for db
 // or request.body data
 function generateBlogPostData() {
@@ -57,7 +57,7 @@ describe('Restaurants API resource', function() {
 
   // we need each of these hook functions to return a promise
   // otherwise we'd need to call a `done` callback. `runServer`,
-  // `seedRestaurantData` and `tearDownDb` each return a promise,
+  // `seedBlogPostData` and `tearDownDb` each return a promise,
   // so we return the value returned by these function calls.
   before(function() {
     return runServer(TEST_DATABASE_URL);
@@ -82,9 +82,9 @@ describe('Restaurants API resource', function() {
 
     it('should return all existing blog posts', function() {
       // strategy:
-      //    1. get back all restaurants returned by by GET request to `/restaurants`
+      //    1. get back all blogposts returned by by GET request to `/posts`
       //    2. prove res has right status, data type
-      //    3. prove the number of restaurants we got back is equal to number
+      //    3. prove the number of blogposts we got back is equal to number
       //       in db.
       //
       // need to have access to mutate and access `res` across
@@ -108,7 +108,7 @@ describe('Restaurants API resource', function() {
 
 
     it('should return blog posts with right fields', function() {
-      // Strategy: Get back all restaurants, and ensure they have expected keys
+      // Strategy: Get back all blogposts, and ensure they have expected keys
 
       let resBlogPost;
       return chai.request(app)
@@ -137,7 +137,7 @@ describe('Restaurants API resource', function() {
 
   describe('POST endpoint', function() {
     // strategy: make a POST request with data,
-    // then prove that the restaurant we get back has
+    // then prove that the blogpost we get back has
     // right keys, and that `id` is there (which means
     // the data was inserted into db)
     it('should add a new blog post', function() {
@@ -171,10 +171,10 @@ describe('Restaurants API resource', function() {
   describe('PUT endpoint', function() {
 
     // strategy:
-    //  1. Get an existing restaurant from db
-    //  2. Make a PUT request to update that restaurant
-    //  3. Prove restaurant returned by request contains data we sent
-    //  4. Prove restaurant in db is correctly updated
+    //  1. Get an existing blogpost from db
+    //  2. Make a PUT request to update that blogpost
+    //  3. Prove blogpost returned by request contains data we sent
+    //  4. Prove blogpost in db is correctly updated
     it('should update fields you send over', function() {
       const updateData = {
         title: 'fofofofofofofof',
@@ -207,10 +207,10 @@ describe('Restaurants API resource', function() {
 
   describe('DELETE endpoint', function() {
     // strategy:
-    //  1. get a restaurant
-    //  2. make a DELETE request for that restaurant's id
+    //  1. get a blogpost
+    //  2. make a DELETE request for that blogpost's id
     //  3. assert that response has right status code
-    //  4. prove that restaurant with the id doesn't exist in db anymore
+    //  4. prove that blogpost with the id doesn't exist in db anymore
     it('delete a blog post by id', function() {
 
       let blogpost;
@@ -228,8 +228,8 @@ describe('Restaurants API resource', function() {
         })
         .then(function(_blogpost) {
           // when a variable's value is null, chaining `should`
-          // doesn't work. so `_restaurant.should.be.null` would raise
-          // an error. `should.be.null(_restaurant)` is how we can
+          // doesn't work. so `_blogpost.should.be.null` would raise
+          // an error. `should.be.null(_blogpost)` is how we can
           // make assertions about a null value.
           should.not.exist(_blogpost);
         });
