@@ -98,7 +98,7 @@ describe('Restaurants API resource', function() {
           res = _res;
           res.should.have.status(200);
           // otherwise our db seeding didn't work
-          res.body.should.have.length.of.at.least(1);
+          res.body.length.should.be.at.least(1);
           return BlogPost.count();
         })
         .then(function(count) {
@@ -186,7 +186,6 @@ describe('Restaurants API resource', function() {
 
       return BlogPost
         .findOne()
-        .exec()
         .then(function(blogpost) {
           updateData.id = blogpost.id;
 
@@ -220,7 +219,6 @@ describe('Restaurants API resource', function() {
 
       return BlogPost
         .findOne()
-        .exec()
         .then(function(_blogpost) {
           blogpost = _blogpost;
           return chai.request(app).delete(`/posts/${blogpost.id}`);
