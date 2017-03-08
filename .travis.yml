@@ -2,3 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: dahoqf/rud5RZUe+4rIM98/L4eJMt4Va2DJoPzRaq4Pgf1R4UKmbJhOxWglPfnE0OIWK/3hrOQYgWTPfus+0sOAIvsu/uh/VAgL+J36wJPqPf4qQRttzToMJtj5CBhjpoL2OmDmlcb50xXIyC/wF8/flSQJ2oSVOd94m4VRij8V2Ah4HjCKyNn4S7oACuEJhpU65/0kay9dL+UESlQJVQQ5WMWKRsJmxd58AOy4qPXyZBUa2IguUez08PMkmEIGKze2Vi92/z0C/Cf0uuoFU7JjWKlSqOpQZyP+xLoB793wyGVk11pNd8yEQ0nHX4JQKQzU9X5WoPa/PcJWqY3Acnf+NBhOw9BVcsTTYsB+wfZmoNf1eNmDpqyMXc1WEF5tbYWH3bYU07Mj85tDxHomFfA4XIFlDNNMd5Sn4iAhvrgZ1odJFugZBiMhg3ofBA8tC2XyYfioD3xAXCC1WWC4JXd8AWG4qm7246HxxfrlKblk8JRTZNdIBK0K66cFfB7BP47cQWYXxvDRTkWb3ZCey+wgi76BRdp01ZPH8T4ErLdB2NGdVwABfiKdCWSBbKdgJFDZdO8T+lNRHoSCFCE58sY/8lK7AhyKLnePqKoUEefejg7z5npY+FAWmjCWRhvLZM7A0FPJRFOvaXHwEQWkHLnMIEDq6GrgQshe8UJgORz0=
+  app: serene-everglades-40667
+  on:
+    repo: NicolasMachado/blog-app-mongoose-challenge-solution
